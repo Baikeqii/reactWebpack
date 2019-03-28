@@ -1,25 +1,20 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const GLOBALS = {
-	'process.env.NODE_ENV': JSON.stringify('development'),
-	__DEV__: true,
-	isElectron: false,
-	Type: 1
+	'process.env.NODE_ENV': JSON.stringify('development')
 };
 
 module.exports = {
 	devtool: 'inline-source-map',
-	entry: {
-		//vendor: ['react', 'react-dom'],
-		app: './src/index.js'
-	},
+    entry: {
+        //vendor: ['react', 'react-dom'],
+        app: './src/index.js'
+    },
 	target: 'web',
 	output: {
-		path: path.resolve(__dirname, "dist/js"),
-		publicPath: '/dist/js/',
-		filename: 'bundle.js'
+        path: path.resolve(__dirname, "/dist"),
+        publicPath: '/',
+        filename: 'bundle.js'
 	},
 	plugins: [
 		new webpack.DefinePlugin(GLOBALS),
@@ -27,8 +22,6 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			$: 'config'
 		}),
-		new webpack.NamedModulesPlugin(),
-		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.LoaderOptionsPlugin({
 			options: {
 				noInfo: false,
@@ -37,12 +30,11 @@ module.exports = {
 		}),
 	],
 	devServer: {
-		hot: true,
-		inline: true,
-		publicPath: '/dist/js/',
-		contentBase: './',
-		port: '8083',
-		historyApiFallback: true
+        hot: true,
+        inline: true,
+        //自定义端口号
+        port: '8083',
+        historyApiFallback: true
 	},
 	resolve: {
 		extensions: ['.js', '.jsx', '.less', '.scss', '.css', "ico"],
@@ -51,20 +43,8 @@ module.exports = {
 			path.join(__dirname, './src')
 		],
 		alias: {
-			"actions": path.resolve(__dirname, "src/actions"),
-			"components": path.resolve(__dirname, "src/components"),
-			"apps": path.resolve(__dirname, "src/apps"),
 			"reducers": path.resolve(__dirname, "src/reducers"),
-			"utils": path.resolve(__dirname, "src/utils"),
-			"im": path.resolve(__dirname, "src/im"),
-			"lib": path.resolve(__dirname, "src/lib"),
-			"core": path.resolve(__dirname, "src/core"),
-			"locale": path.resolve(__dirname, "src/locale"),
-			"public": path.resolve(__dirname, "src/public"),
 			"store": path.resolve(__dirname, "src/store"),
-			// 'react': isPro ? 'preact-compat/dist/preact-compat' : 'react', //如果你不想要preact，可以删除这一行
-			//'react-dom': isPro ? 'preact-compat/dist/preact-compat' : 'react-dom', //如果你不想要preact，可以删除这一行
-			// 'create-react-class': 'preact-compat/lib/create-react-class' //如果你不想要preact，可以删除这一行
 		}
 	},
 	module: {
