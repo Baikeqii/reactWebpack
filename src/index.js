@@ -9,5 +9,5 @@ const store = configStore();
 let Router = HashRouter;
 
 render(
-    <div>也爱</div>, document.getElementById("app")
+    <p>也爱asdf</p>, document.getElementById("app")
 );

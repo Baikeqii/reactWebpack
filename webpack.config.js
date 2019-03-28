@@ -12,8 +12,8 @@ module.exports = {
     },
 	target: 'web',
 	output: {
-        path: path.resolve(__dirname, "/dist"),
-        publicPath: '/',
+        path: path.resolve(__dirname, "dist"),
+        publicPath: 'dist',
         filename: 'bundle.js'
 	},
 	plugins: [
@@ -32,7 +32,6 @@ module.exports = {
 	devServer: {
         hot: true,
         inline: true,
-        //自定义端口号
         port: '8083',
         historyApiFallback: true
 	},
